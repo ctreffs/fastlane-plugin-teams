@@ -11,7 +11,7 @@ module Fastlane
           "themeColor" => params[:theme_color],
           "title" => params[:title],
           "summary" => params[:title],
-          "sections" => [ { "text" => params[:message], "facts" => params[:facts] } ]
+          "sections" => [ { "text" => params[:message], "facts" => params[:facts], "potentialAction" => params[:potentialAction] } ]
         }
 
         json_headers = { 'Content-Type' => 'application/json' }
@@ -55,6 +55,10 @@ module Fastlane
                                        type: Array,
                                        env_name: "FL_TEAMS_FACTS",
                                        description: "Optional facts"),
+          FastlaneCore::ConfigItem.new(key: :potentialAction,
+                                       type: Array,
+                                       env_name: "FL_TEAMS_ACTIONS",
+                                       description: "Optional potential actions (links)"),
           FastlaneCore::ConfigItem.new(key: :teams_url,
                                        env_name: "FL_TEAMS_URL",
                                        sensitive: true,
@@ -82,6 +86,22 @@ module Fastlane
               {
                 "name"=>"Lane",
                 "value"=>"android internal"
+              }
+            ],
+            potentialAction:[
+              {
+                "@type": "OpenUri",
+                "name": "View in Trello",
+                "targets": [
+                  { "os": "default", "uri": "https://..." }
+                ]
+              },
+              {
+                "@type": "OpenUri2",
+                "name": "View in 2",
+                "targets": [
+                  { "os": "default", "uri": "https://..." }
+                ]
               }
             ],
             teams_url: "https://outlook.office.com/webhook/..."
