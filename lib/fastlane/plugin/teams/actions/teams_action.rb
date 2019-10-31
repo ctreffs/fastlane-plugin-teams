@@ -11,7 +11,7 @@ module Fastlane
           "themeColor" => params[:theme_color],
           "title" => params[:title],
           "summary" => params[:title],
-          "sections" => [ { "text" => params[:message], "facts" => params[:facts], "potentialAction" => params[:potentialAction] } ]
+          "sections" => [ { "text" => params[:message], "facts" => params[:facts],"images" => params[:images], "potentialAction" => params[:potentialAction] } ]
         }
 
         json_headers = { 'Content-Type' => 'application/json' }
@@ -55,6 +55,14 @@ module Fastlane
                                        type: Array,
                                        env_name: "FL_TEAMS_FACTS",
                                        description: "Optional facts"),
+          FastlaneCore::ConfigItem.new(key: :facts,
+                                       type: Array,
+                                       env_name: "FL_TEAMS_FACTS",
+                                       description: "Optional facts"),
+          FastlaneCore::ConfigItem.new(key: :images,
+                                       type: Array,
+                                       env_name: "FL_TEAMS_IMAGES",
+                                       description: "Optional images"),                            
           FastlaneCore::ConfigItem.new(key: :potentialAction,
                                        type: Array,
                                        env_name: "FL_TEAMS_ACTIONS",
