@@ -24,10 +24,10 @@ module Fastlane
       end
 
       def self.check_response_code(response)
-        if response.code.to_i == 200 && response.body.to_i == 1
+        if response.code.to_i >= 200 && response.code.to_i < 203 && response.body.to_i == 1
           true
         else
-          UI.user_error!("An error occurred: #{response.body}")
+          UI.user_error!("An error occurred: #{response}")
         end
       end
 
@@ -36,7 +36,7 @@ module Fastlane
       end
 
       def self.authors
-        ["mbogh"]
+        ["mbogh", "ctreffs"]
       end
 
       def self.details
